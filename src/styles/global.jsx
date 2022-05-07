@@ -30,7 +30,7 @@ export const GlobalStyle = createGlobalStyle`
 
     body {
         -webkit-font-smooth: antialiased;
-        background-color: var(--primary);
+        //background-color: var(--primary);
     }
 
 
@@ -44,7 +44,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
 
-    h1, h2, h3, h4, input, textarea{
+    h1, h2, h3, h4, input, textarea, a{
         font-family: 'Raleway', sans-serif;
     }
 `;

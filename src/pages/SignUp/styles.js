@@ -19,6 +19,15 @@ export const Container = styled.section`
         color: var(--white);
         margin-bottom: 1.5rem;
     }
+
+    a {
+        color: var(--white);
+        font-size: 1rem;
+        font-weight: 700;
+        margin-top: 2.25rem;
+        text-decoration: none;
+        line-height: 18px;
+    }
 `
 
 export const SignUpForm = styled.form`

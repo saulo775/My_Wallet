@@ -1,26 +1,28 @@
 import axios from "axios";
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import { 
     Container,
     SignUpForm
 } from "./styles";
 
-//const SIGNUP_URL = "localhost:5500/sign-up";
-
-
 export function SignUp() {
     const [username, setUsername] = React.useState('');
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [passwordConfirmation, setPasswordConfirmation] = React.useState('');
-
+    const navigate = useNavigate();
+    
     async function handleRegisterUser(e) {
         e.preventDefault();
+
         try {
             await axios.post("http://localhost:5500/sign-up", 
                 { username, email, password, passwordConfirmation }
             );
+
+            navigate("/sign-in")
         } catch (e) {
             if(e.response.status === 409){
                 alert("Usuário já cadastrado");
@@ -31,8 +33,6 @@ export function SignUp() {
             }
         }
     }
-
-
     return (
         <Container>
             <h1>MyWallet</h1>
@@ -56,7 +56,7 @@ export function SignUp() {
                     required
                 />
                 <input 
-                    type="text" 
+                    type="password" 
                     placeholder="Senha" 
                     value={password} 
                     onChange={(e)=>{
@@ -65,7 +65,7 @@ export function SignUp() {
                     required
                 />
                 <input 
-                    type="text" 
+                    type="password" 
                     placeholder="Confirme a senha" 
                     value={passwordConfirmation} 
                     onChange={(e)=>{
@@ -75,6 +75,7 @@ export function SignUp() {
                 /> 
                 <button type="submit">Cadastrar</button>
             </SignUpForm>
+            <Link to={"/sign-in"}>Já tem uma conta? Entre agora</Link>
         </Container>
-    )
+    );
 }
