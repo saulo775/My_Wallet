@@ -1,6 +1,8 @@
 import axios from "axios";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../../contexts/UserContext";
+
 
 import {
     Container,
@@ -12,11 +14,15 @@ export function SignIn() {
     const [ password, sePassword ] = React.useState('');
     const navigate = useNavigate();
 
+    const {setToken, setUsername} = React.useContext(UserContext);
+
     async function handleSignIn(e) {
         e.preventDefault();
 
         try {
             const {data} = await axios.post("http://localhost:5500/sign-in", {email, password});
+            setToken(data.token);
+            setUsername(data.username);
             navigate("/");
         } catch (e) {
             alert("Dados incorretor, Preencha novamente");
