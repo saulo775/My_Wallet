@@ -18,7 +18,6 @@ import {
 } from "./styles";
 
 import { UserContext } from "../../contexts/UserContext";
-import { useEffect } from "react";
 
 export function Dashboard() {
     const [allFinances, setAllFinances] = React.useState([]);
@@ -75,7 +74,7 @@ export function Dashboard() {
         })
     }
 
-    function handleDeleteOperation(id, amount) {
+    function handleDeleteOperation(id) {
         const confirmDelete = window.confirm("Tem certeza que quer excluir?");
         if (confirmDelete) {
             const promise = axios({
@@ -104,7 +103,10 @@ export function Dashboard() {
             <OperationContent key={operation._id}>
                 <div>
                     <p>{operation.date}</p>
-                    <h3>{operation.description}</h3>
+                    <h3 
+                        style={{cursor: "pointer"}}
+                    >{operation.description}
+                    </h3>
                 </div>
                 <div>
                     <h3 className={operation.type}>

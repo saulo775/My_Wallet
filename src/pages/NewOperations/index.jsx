@@ -5,9 +5,9 @@ import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import {Container, FormOperation} from "./styles";
 
-export function Operations() {
-    const [amount, setAmount] = React.useState(null);
-    const [description, setDescription] = React.useState();
+export function NewOperations() {
+    const [amount, setAmount] = React.useState(undefined);
+    const [description, setDescription] = React.useState('');
     
     const {type} = useParams();
     const param = type.replace(":type=", "");
