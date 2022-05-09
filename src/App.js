@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { SignUp } from "./pages/SignUp";
 import { SignIn } from "./pages/SignIn";
 import { Dashboard } from "./pages/Dashboard";
+import { NewOperation } from "./pages/NewOperation";
 import { UserContext } from "./contexts/UserContext";
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
             <Route path="/sign-up" element={<SignUp/>}/>
             <Route path="/sign-in" element={<SignIn/>}/>
             <Route path="/" element={<Dashboard/>}/>
-            <Route path="/new-operation" element={<Dashboard/>}/>
+            <Route path="/new-operation:type" element={<NewOperation/>}/>
           </Routes>
         </UserContext.Provider>
       </BrowserRouter>

@@ -34,7 +34,6 @@ export const GlobalStyle = createGlobalStyle`
         //background-color: var(--primary);
     }
 
-
     main {
         display: flex;
         justify-content: center;
@@ -44,8 +43,11 @@ export const GlobalStyle = createGlobalStyle`
         min-height: 100vh;
     }
 
-
     h1, h2, h3, h4, input, textarea, a{
         font-family: 'Raleway', sans-serif;
+    }
+
+    svg {
+        cursor: pointer;
     }
 `;

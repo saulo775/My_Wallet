@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import {
@@ -23,6 +23,8 @@ export function Dashboard() {
     const [allFinances, setAllFinances] = React.useState([]);
     const [total, setTotal] = React.useState();
     const { token, username } = React.useContext(UserContext);
+
+    const navigate = useNavigate();
 
     React.useEffect(() => {
         const promise = axios.get("http://localhost:5500/", {
@@ -49,6 +51,10 @@ export function Dashboard() {
         });
     }, [token]);
 
+    function handleCreateNewOperation(type) {
+        navigate(`/new-operation:type=${type}`)
+    }
+
     const finances = allFinances.map((operation)=>{
         return (
             <OperationContent key={operation._id}>
@@ -57,7 +63,9 @@ export function Dashboard() {
                     <h3>{operation.description}</h3>
                 </div>
                 <div>
-                    <h3 className={operation.type}>{operation.amount},00</h3>
+                    <h3 className={operation.type}>
+                        {operation.amount},00
+                    </h3>
                     <AiOutlineClose/>
                 </div>
             </OperationContent>
@@ -93,11 +101,15 @@ export function Dashboard() {
             </ContainerRegister>
 
             <ContainerButtons>
-                <Button>
+                <Button onClick={()=>{
+                    handleCreateNewOperation("entry")
+                }}>
                     <MdAddCircleOutline />
                     <h2>Nova <br />Entrada</h2>
                 </Button>
-                <Button>
+                <Button onClick={()=>{
+                    handleCreateNewOperation("exit")
+                }}>
                     <MdOutlineRemoveCircleOutline />
                     <h2>Nova <br />Saída</h2>
                 </Button>
