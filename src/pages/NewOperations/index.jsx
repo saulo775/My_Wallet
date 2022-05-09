@@ -26,7 +26,7 @@ export function NewOperations() {
         e.preventDefault();
         const promise = axios({
             method: "post",
-            url: "http://localhost:5500/new-operation",
+            url: "https://mywallet-api-saulo.herokuapp.com/new-operation",
             data: {
                 amount,
                 description,

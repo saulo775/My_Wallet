@@ -27,7 +27,7 @@ export function Dashboard() {
     const navigate = useNavigate();
 
     React.useEffect(() => {
-        const promise = axios.get("http://localhost:5500/", {
+        const promise = axios.get("https://mywallet-api-saulo.herokuapp.com/", {
             headers: {
                 authorization: `Bearer ${token}`
             }
@@ -58,7 +58,7 @@ export function Dashboard() {
     function handleLogout() {
         const promise = axios({
             method: "POST",
-            url: "http://localhost:5500/logout",
+            url: "https://mywallet-api-saulo.herokuapp.com/logout",
             headers: {
                 authorization: `Bearer ${token}`
             }
@@ -79,7 +79,7 @@ export function Dashboard() {
         if (confirmDelete) {
             const promise = axios({
                 method: "DELETE",
-                url: "http://localhost:5500/",
+                url: "https://mywallet-api-saulo.herokuapp.com/",
                 headers: {
                     _id: id
                 }

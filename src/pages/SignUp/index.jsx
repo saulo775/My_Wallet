@@ -18,7 +18,7 @@ export function SignUp() {
         e.preventDefault();
 
         try {
-            await axios.post("http://localhost:5500/sign-up", 
+            await axios.post("https://mywallet-api-saulo.herokuapp.com/sign-up", 
                 { username, email, password, passwordConfirmation }
             );
 

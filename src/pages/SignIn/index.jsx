@@ -20,7 +20,7 @@ export function SignIn() {
         e.preventDefault();
 
         try {
-            const {data} = await axios.post("http://localhost:5500/sign-in", {email, password});
+            const {data} = await axios.post("https://mywallet-api-saulo.herokuapp.com/sign-in", {email, password});
             setToken(data.token);
             setUsername(data.username);
             navigate("/");
