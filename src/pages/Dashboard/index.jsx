@@ -55,6 +55,25 @@ export function Dashboard() {
         navigate(`/new-operation:type=${type}`)
     }
 
+    function handleLogout() {
+        const promise = axios({
+            method: "POST",
+            url: "http://localhost:5500/logout",
+            headers: {
+                authorization: `Bearer ${token}`
+            }
+        });
+
+        promise.then((response)=>{
+            console.log(response);
+            navigate("/sign-in");
+        });
+
+        promise.catch((e)=>{
+            console.log(e);
+        })
+    }
+
     const finances = allFinances.map((operation)=>{
         return (
             <OperationContent key={operation._id}>
@@ -76,7 +95,7 @@ export function Dashboard() {
         <Container>
             <header>
                 <h2>Olá, {username}</h2>
-                <RiLogoutBoxRLine />
+                <RiLogoutBoxRLine onClick={handleLogout}/>
             </header>
 
             <ContainerRegister>
