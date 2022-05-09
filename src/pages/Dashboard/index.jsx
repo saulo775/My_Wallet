@@ -18,6 +18,7 @@ import {
 } from "./styles";
 
 import { UserContext } from "../../contexts/UserContext";
+import { useEffect } from "react";
 
 export function Dashboard() {
     const [allFinances, setAllFinances] = React.useState([]);
@@ -49,7 +50,7 @@ export function Dashboard() {
         promise.catch((e) => {
             console.log(e);
         });
-    }, [token]);
+    }, [token, total]);
 
     function handleCreateNewOperation(type) {
         navigate(`/new-operation:type=${type}`)
@@ -74,6 +75,30 @@ export function Dashboard() {
         })
     }
 
+    function handleDeleteOperation(id, amount) {
+        const confirmDelete = window.confirm("Tem certeza que quer excluir?");
+        if (confirmDelete) {
+            const promise = axios({
+                method: "DELETE",
+                url: "http://localhost:5500/",
+                headers: {
+                    _id: id
+                }
+            });
+    
+            promise.then((response)=>{
+                setTotal(0)
+                console.log(response);
+            })
+            promise.catch((e)=>{
+                alert("Não foi possível deletar a operacão!");
+                console.log(e);
+            });
+        }else {
+            return
+        }
+    }
+
     const finances = allFinances.map((operation)=>{
         return (
             <OperationContent key={operation._id}>
@@ -85,7 +110,9 @@ export function Dashboard() {
                     <h3 className={operation.type}>
                         {operation.amount},00
                     </h3>
-                    <AiOutlineClose/>
+                    <AiOutlineClose onClick={()=>{
+                        handleDeleteOperation(operation._id, operation.amount);
+                    }}/>
                 </div>
             </OperationContent>
         );

@@ -5,13 +5,13 @@ import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import {Container, FormOperation} from "./styles";
 
-export function NewOperation() {
-    const [amount, setAmount] = React.useState();
+export function Operations() {
+    const [amount, setAmount] = React.useState(null);
     const [description, setDescription] = React.useState();
     
     const {type} = useParams();
     const param = type.replace(":type=", "");
-    const { token, username } = React.useContext(UserContext);
+    const { token } = React.useContext(UserContext);
     const navigate = useNavigate();
     
     let typeOperation = ""
